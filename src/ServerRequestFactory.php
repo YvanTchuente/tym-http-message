@@ -48,7 +48,8 @@ class ServerRequestFactory implements ServerRequestFactoryInterface
 
     private static function getGlobalRequestUri()
     {
-        return new Uri($_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+        $scheme = isset($_SERVER['HTTPS']) ? 'https' : 'http';
+        return new Uri($scheme . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
     }
 
     private static function setGlobalRequestHeaders(ServerRequestInterface $serverRequest)
